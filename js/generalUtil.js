@@ -1,5 +1,5 @@
 var UTIL = (function (gen) {
-  var domReady = function (funct) {
+  const domReady = function (funct) {
     document.addEventListener("DOMContentLoaded", function () {
         // console.log(typeof funct,"dev testing");
       if (typeof funct === "function") {

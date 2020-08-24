@@ -18,6 +18,7 @@ var UTIL = (function(u){
             } else {
                 if (domElement.indexOf('#') === 0) {
                     try {
+                        console.log("heere dev");
                         return [(doc.getElementById(domElement.substring(1,domElement.length)))];
                     } catch(e) {
                         console.log(e);

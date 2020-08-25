@@ -23,7 +23,7 @@ var MAINAPP = (function (nsp, $, domU, strU) {
       for(let i = 0; i < questionsArray.length; i++) {
         questionsArray[i] = new Question(questionsArray[i]);
       }
-
+      setUpNavigation();
     },
     initiateQuiz = function () {
       loadJson("../JSON/content.json");
@@ -60,20 +60,30 @@ var MAINAPP = (function (nsp, $, domU, strU) {
         case 'fill-in':
           this.populateTheQuestion = function() {
             this.populateQuestion();
-            this.htmlDiv.querySelector('textArea').value = '';
+            this.htmlDiv.querySelector('textarea').value = '';
+          };
+          this.checkTheAnswer = function() {
+            let ans;
+            const value = this.htmlDiv.querySelector('textarea').value;
+            console.log(value, "check value");
+
+
           };
       }
-      Question.prototype.populateQuestion = function() {
-        //set question text
-        this.questionField.innerHTML = this.questionText;
-        this.noAnswerFeed.innerHTML = `<p><span>X</span> ${this.feedback.noAnswer} </p>`;
-        this.correctFeed.innderHTML = `<p><span>&#1003</span> ${this.feedback.correctAnswer} </p>`;
-        this.inccorrectFeed.innderHTML = `<p><span>&#1003</span> ${this.feedback.wrongAnswer} </p>`;
-
-      }
-
     };
 
+    Question.prototype.populateQuestion = function() {
+      //set question text
+      this.questionField.innerHTML = this.questionText;
+      this.noAnswerFeed.innerHTML = `<p><span>X</span> ${this.feedback.noAnswer} </p>`;
+      this.correctFeed.innderHTML = `<p><span>&#1003</span> ${this.feedback.correctAnswer} </p>`;
+      this.inccorrectFeed.innderHTML = `<p><span>&#1003</span> ${this.feedback.wrongAnswer} </p>`;
+    };
+
+    //setup Navigation Object
+    const setUpNavigation = function() {
+      
+    };
 
     UTIL.domReady(initiateQuiz);
     // console.log("check here");

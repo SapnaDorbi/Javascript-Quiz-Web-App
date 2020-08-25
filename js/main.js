@@ -47,12 +47,33 @@ var MAINAPP = (function (nsp, $, domU, strU) {
       this.correct = false;
       
       //Assign DOM Elements
-      htmlDiv = $(`#${this.questionDiv}`);
-      console.log(htmlDiv, "check div");
+      this.htmlDiv = $(`#${this.questionDiv}`);
+      // console.log(this.htmlDiv, "check div");
+      this.questionField = this.htmlDiv.querySelector(".question-text");
+      this.noAnswerFeed = this.htmlDiv.querySelector(".feedback.no-answer");
+      this.correctFeed = this.htmlDiv.querySelector(".feedback.correct");
+      this.inccorrectFeed = this.htmlDiv.querySelector(".feedback.incorrect");
 
+      console.log(this, "check this");  
 
-      
+      switch(this.questionDiv) {
+        case 'fill-in':
+          this.populateTheQuestion = function() {
+            this.populateQuestion();
+            this.htmlDiv.querySelector('textArea').value = '';
+          };
+      }
+      Question.prototype.populateQuestion = function() {
+        //set question text
+        this.questionField.innerHTML = this.questionText;
+        this.noAnswerFeed.innerHTML = `<p><span>X</span> ${this.feedback.noAnswer} </p>`;
+        this.correctFeed.innderHTML = `<p><span>&#1003</span> ${this.feedback.correctAnswer} </p>`;
+        this.inccorrectFeed.innderHTML = `<p><span>&#1003</span> ${this.feedback.wrongAnswer} </p>`;
+
+      }
+
     };
+
 
     UTIL.domReady(initiateQuiz);
     // console.log("check here");

@@ -56,11 +56,22 @@ var UTIL = (function(u){
             } catch(e) {
                 console.log(e);
             }
-        }
+        },
+        addClass = function(de, cls) {
+            for (let i = 0; i < de.length; i++) {
+                if (de[i].classList) {
+                    de[i].classList.add(cls);
+                } else {
+                    de[i].className += ' ' + cls;
+                }
+            }
+        };
 
         //public method and properties
         sub.$ = $;
         sub.setHTML = setHTML;
+        sub.addClass = addClass;
+
 
         return u;
 

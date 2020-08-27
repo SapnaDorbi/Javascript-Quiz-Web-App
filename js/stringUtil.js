@@ -1,6 +1,6 @@
 var UTIL = (function(s){
 //set up sub module
-const sub = s.string = s.string || {};
+var sub = s.string = s.string || {};
 
     const numChar = function(str, char){
         return (str.split(char).length - 1);

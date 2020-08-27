@@ -80,8 +80,25 @@ var MAINAPP = (function (nsp, $, domU, strU) {
       this.inccorrectFeed.innderHTML = `<p><span>&#1003</span> ${this.feedback.wrongAnswer} </p>`;
     };
 
+    Question.prototype.hideQuestion = function() {
+      domU.addClass([this.htmlDiv], 'hidden-question');
+    };
+
     //setup Navigation Object
     const setUpNavigation = function() {
+      let cQuestion = 0;
+      navigaitonProto = {
+        questionsArray: questionsArray,
+        totalQuestions: questionsArray.lemgth,
+        hideQuestion: function() {
+          let curQuestion = this.questionsArray[this.currentQuestion];
+          curQuestion.hideQuestion();
+
+        },
+        get currentQuestion() {
+          return cQuestion;
+        }
+      }
       
     };
 

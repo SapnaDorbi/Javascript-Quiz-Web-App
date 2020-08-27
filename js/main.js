@@ -30,9 +30,9 @@ var MAINAPP = (function (nsp, $, domU, strU) {
     };
 
 
-    const Question = function(obj){
+    var Question = function(obj){
       // console.log(obj, "check obj");
-      let htmlDiv;
+      // let htmlDiv;
       //transfer data
       this.questionDiv = (obj.type === "true-false") ? "multi-choice" : obj.type;
       this.type = obj.type;
@@ -54,26 +54,36 @@ var MAINAPP = (function (nsp, $, domU, strU) {
       this.correctFeed = this.htmlDiv.querySelector(".feedback.correct");
       this.inccorrectFeed = this.htmlDiv.querySelector(".feedback.incorrect");
 
-      console.log(this, "check this");  
+      // console.log(this.questionDiv, "check this");  
 
       switch(this.questionDiv) {
         case 'fill-in':
+          console.log(this,"hititit");
           this.populateTheQuestion = function() {
+            console.log("hehreere");
             this.populateQuestion();
             this.htmlDiv.querySelector('textarea').value = '';
           };
+          console.log("middle in");
           this.checkTheAnswer = function() {
             let ans;
             const value = this.htmlDiv.querySelector('textarea').value;
             console.log(value, "check value");
-
-
           };
+          break;
+          default:
+            console.log("dsfkdsfl");
+            this.populateTheQuestion = function() {
+              this.populateQuestion();
+            };
+            break;
       }
     };
 
     Question.prototype.populateQuestion = function() {
       //set question text
+      alert("kpppkph");
+      console.log(this.questionText, "quetext");
       this.questionField.innerHTML = this.questionText;
       this.noAnswerFeed.innerHTML = `<p><span>X</span> ${this.feedback.noAnswer} </p>`;
       this.correctFeed.innderHTML = `<p><span>&#1003</span> ${this.feedback.correctAnswer} </p>`;
@@ -84,10 +94,17 @@ var MAINAPP = (function (nsp, $, domU, strU) {
       domU.addClass([this.htmlDiv], 'hidden-question');
     };
 
+    Question.prototype.displayQuestion = function() {
+      // console.log("diepaly condnf");
+      // const checkTheAnswer = this.checkTheAnswer.
+      domU.removeClass([this.htmlDiv],'hidden-question');
+    }
+
     //setup Navigation Object
     const setUpNavigation = function() {
+      console.log("check naviga");
       let cQuestion = 0;
-      navigaitonProto = {
+      navigationProto = {
         questionsArray: questionsArray,
         totalQuestions: questionsArray.lemgth,
         hideQuestion: function() {
@@ -95,11 +112,22 @@ var MAINAPP = (function (nsp, $, domU, strU) {
           curQuestion.hideQuestion();
 
         },
+        showQuestion: function(){
+          let newQuestion = this.questionsArray[this.currentQuestion];
+          // newQuestion.hideFeedback();
+          newQuestion.displayQuestion();
+        },
         get currentQuestion() {
           return cQuestion;
         }
-      }
+      };
+
+      nextButton = Object.create(navigationProto);
+      nextButton.goNext = function(){
+        console.log("ho next");
+      };
       
+      navigationProto.showQuestion();
     };
 
     UTIL.domReady(initiateQuiz);

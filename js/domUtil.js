@@ -65,12 +65,22 @@ var UTIL = (function(u){
                     de[i].className += ' ' + cls;
                 }
             }
+        },
+        removeClass = function(de, cls) {
+            for (let i = 0; i < de.length; i++) {
+                if (de[i].classList) {
+                    de[i].classList.remove(cls);
+                } else {
+                    de[i].className.replace(/\bcls\b/,'');
+                }
+            }
         };
 
         //public method and properties
         sub.$ = $;
         sub.setHTML = setHTML;
         sub.addClass = addClass;
+        sub.removeClass = removeClass;
 
 
         return u;

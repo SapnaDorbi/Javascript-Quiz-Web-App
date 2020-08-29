@@ -91,7 +91,7 @@ var MAINAPP = (function (nsp, $, domU, strU) {
 
     Question.prototype.populateQuestion = function() {
       //set question text
-      console.log(this.feedback, "quetext");
+      // console.log(this.feedback, "quetext");
       this.questionField.innerHTML = this.questionText;
       this.noAnswerFeed.innerHTML = `<p><span>X</span> ${this.feedback.noAnswer} </p>`;
       this.correctFeed.innerHTML = `<p><span>&#1003</span> ${this.feedback.correctAnswer} </p>`;
@@ -125,7 +125,7 @@ var MAINAPP = (function (nsp, $, domU, strU) {
       let cQuestion = 0;
       navigationProto = {
         questionsArray: questionsArray,
-        totalQuestions: questionsArray.lemgth,
+        totalQuestions: questionsArray.length,
         hideQuestion: function() {
           let curQuestion = this.questionsArray[this.currentQuestion];
           curQuestion.hideQuestion();
@@ -133,20 +133,43 @@ var MAINAPP = (function (nsp, $, domU, strU) {
         },
         showQuestion: function(){
           let newQuestion = this.questionsArray[this.currentQuestion];
+          console.log(newQuestion, "check newquestion");
           // newQuestion.hideFeedback();
-          newQuestion.populateQuestion();
+          newQuestion.populateTheQuestion();
           newQuestion.displayQuestion();
         },
         get currentQuestion() {
           return cQuestion;
+        },
+        set currentQuestion(value) {
+          cQuestion = value;
         }
       };
 
       nextButton = Object.create(navigationProto);
-      nextButton.goNext = function(){
-        console.log("ho next");
+      nextButton.goNext = function(e){
+        // console.log(this.currentQuestion, this.totalQuestions,"ho next");
+        if(this.currentQuestion < this.totalQuestions - 1) {
+          this.hideQuestion();
+          this.currentQuestion = this.currentQuestion + 1;
+          // console.log(this.currentQuestion, "now current quest");
+          this.showQuestion();
+        }
+      };
+
+      prevButton = Object.create(navigationProto);
+      prevButton.goPrev = function(){
+        console.log(this.currentQuestion, "check currentquestion");
       };
       
+      domU.assignEvent($('.btn-prev'),'click',function(e){
+        prevButton.goPrev(e);
+      });
+
+      domU.assignEvent($('.btn-next'),'click',function(e){
+        nextButton.goNext(e);
+      });
+
       navigationProto.showQuestion();
     };
 

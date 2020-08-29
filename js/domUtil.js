@@ -11,6 +11,7 @@ var UTIL = (function(u){
         $ = function(domElement) {
             if (!singleSelector(domElement)) {
                 try {
+                    // console.log("here vedvdev");
                     return doc.querySelectorAll(domElement);
                 } catch(e) {
                     console.log(e);
@@ -42,11 +43,23 @@ var UTIL = (function(u){
             var arr;
             
             arr = str.split(" ");
+            // console.log(arr.length, "check arr");
+
             if (arr.length === 1 && strU.numChar(str, "#") <= 1 && strU.numChar(str, ".") <= 1) {
                 return true;
             } else {   
                 return false;
             } 
+        },
+        assignEvent = function(nodeList, event, funct) {
+            //use for loop since node list is not an array
+            try {
+                for(let i = 0; i < nodeList.length; i++) {
+                    nodeList[i].addEventListener(event, funct);
+                }
+            } catch(e) {
+                console.log(e);
+            }
         },
         setHTML = function(de, html) {
             try {
@@ -60,8 +73,10 @@ var UTIL = (function(u){
         addClass = function(de, cls) {
             for (let i = 0; i < de.length; i++) {
                 if (de[i].classList) {
+                    // console.log(de[i].classList,"dev if");
                     de[i].classList.add(cls);
                 } else {
+                    // console.log("dev else");
                     de[i].className += ' ' + cls;
                 }
             }
@@ -80,8 +95,8 @@ var UTIL = (function(u){
         sub.$ = $;
         sub.setHTML = setHTML;
         sub.addClass = addClass;
+        sub.assignEvent = assignEvent;
         sub.removeClass = removeClass;
-
 
         return u;
 

@@ -1,6 +1,8 @@
 var MAINAPP = (function (nsp, $, domU, strU) {
   // console.log(nsp, $, domU, strU , "dev test..");
   // loading the json
+  let questionsArray = [];
+  
   const loadJson = function(path) {
       const xobj = new XMLHttpRequest();
       xobj.overrideMimeType('application/json');
@@ -58,17 +60,24 @@ var MAINAPP = (function (nsp, $, domU, strU) {
 
       switch(this.questionDiv) {
         case 'fill-in':
-          console.log(this,"hititit");
           this.populateTheQuestion = function() {
-            console.log("hehreere");
             this.populateQuestion();
             this.htmlDiv.querySelector('textarea').value = '';
           };
-          console.log("middle in");
           this.checkTheAnswer = function() {
             let ans;
             const value = this.htmlDiv.querySelector('textarea').value;
-            console.log(value, "check value");
+            // console.log(value, "check value");
+            if(value) {
+              // console.log(this.correctResp, "check correct resp");
+              ans = strU.breakOut(this.correctResp, ",");
+              this.correct = ans.every(function(val){
+                return (value.indexOf(val) > -1);
+              });
+              this.result = (this.correct) ? 'correct' : 'incorrect';
+            }
+            this.hideFeedback();
+            this.displayFeedback();
           };
           break;
           default:
@@ -82,12 +91,11 @@ var MAINAPP = (function (nsp, $, domU, strU) {
 
     Question.prototype.populateQuestion = function() {
       //set question text
-      alert("kpppkph");
-      console.log(this.questionText, "quetext");
+      console.log(this.feedback, "quetext");
       this.questionField.innerHTML = this.questionText;
       this.noAnswerFeed.innerHTML = `<p><span>X</span> ${this.feedback.noAnswer} </p>`;
-      this.correctFeed.innderHTML = `<p><span>&#1003</span> ${this.feedback.correctAnswer} </p>`;
-      this.inccorrectFeed.innderHTML = `<p><span>&#1003</span> ${this.feedback.wrongAnswer} </p>`;
+      this.correctFeed.innerHTML = `<p><span>&#1003</span> ${this.feedback.correctAnswer} </p>`;
+      this.inccorrectFeed.innerHTML = `<p><span>X</span> ${this.feedback.wrongAnswer} </p>`;
     };
 
     Question.prototype.hideQuestion = function() {
@@ -95,14 +103,25 @@ var MAINAPP = (function (nsp, $, domU, strU) {
     };
 
     Question.prototype.displayQuestion = function() {
-      // console.log("diepaly condnf");
-      // const checkTheAnswer = this.checkTheAnswer.
+      // console.log(this.checkTheAnswer,"diepaly condnf");
+      const checkTheAnswer = this.checkTheAnswer.bind(this);
       domU.removeClass([this.htmlDiv],'hidden-question');
+      domU.assignEvent(this.htmlDiv.querySelectorAll('.fill-in-submit.btn-primary'),'click', function(){
+        checkTheAnswer();
+      });
+    };
+
+    Question.prototype.displayFeedback = function() {
+      const feedback = $(`.feedback.${this.result}`);
+      domU.addClass(feedback, 'visible');
+    }
+    Question.prototype.hideFeedback = function() {
+      const feedback = $(`.feedback.visible`);
+      domU.removeClass(feedback,'visible');
     }
 
     //setup Navigation Object
     const setUpNavigation = function() {
-      console.log("check naviga");
       let cQuestion = 0;
       navigationProto = {
         questionsArray: questionsArray,
@@ -115,6 +134,7 @@ var MAINAPP = (function (nsp, $, domU, strU) {
         showQuestion: function(){
           let newQuestion = this.questionsArray[this.currentQuestion];
           // newQuestion.hideFeedback();
+          newQuestion.populateQuestion();
           newQuestion.displayQuestion();
         },
         get currentQuestion() {
@@ -131,6 +151,6 @@ var MAINAPP = (function (nsp, $, domU, strU) {
     };
 
     UTIL.domReady(initiateQuiz);
-    // console.log("check here");
+    
 })(MAINAPP || {}, UTIL.dom.$, UTIL.dom, UTIL.string);
 

@@ -18,8 +18,6 @@ var MAINAPP = (function (nsp, $, domU, strU) {
     },
     parseData = function(cObj) {
       questionsArray = cObj.questions;
-
-      // console.log(questionsArray, "console ..... questionArray");
       domU.setHTML($('.fill-in-submit'), cObj.buttonText);
 
       for(let i = 0; i < questionsArray.length; i++) {
@@ -80,8 +78,33 @@ var MAINAPP = (function (nsp, $, domU, strU) {
             this.displayFeedback();
           };
           break;
+          case 'multi-choice':
+            const distractors = this.htmlDiv.querySelectorAll('label'),
+              distractorsRadio = this.htmlDiv.querySelectorAll('input');
+            this.populateTheQuestion = function(){
+              this.populateQuestion();
+              for (let i=0; i < distractors.length; i ++){
+                if(this.distractorText[i] !== undefined) {
+                  distractors[i].innerHTML = this.distractorText[i];
+                }
+              }
+            };
+            this.checkTheAnswer = function() {
+              for(let i = 0; i < distractors.length; i++) {
+                if(distractorsRadio[i].checked) {
+                  this.studentResp = $(`#${distractorsRadio[i].id}_label`).innerHTML;
+                }
+              }
+
+              if(this.studentResp !== ""){
+                this.correct = this.studentResp === this.correctResp;
+                this.result = (this.correct) ? 'correct' : 'incorrect';
+              }
+              this.hideFeedback();
+              this.displayFeedback();
+            };
+            break;
           default:
-            console.log("dsfkdsfl");
             this.populateTheQuestion = function() {
               this.populateQuestion();
             };
@@ -133,7 +156,7 @@ var MAINAPP = (function (nsp, $, domU, strU) {
         },
         showQuestion: function(){
           let newQuestion = this.questionsArray[this.currentQuestion];
-          console.log(newQuestion, "check newquestion");
+          // console.log(newQuestion, "check newquestion");
           // newQuestion.hideFeedback();
           newQuestion.populateTheQuestion();
           newQuestion.displayQuestion();

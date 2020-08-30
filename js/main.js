@@ -156,8 +156,6 @@ var MAINAPP = (function (nsp, $, domU, strU) {
         },
         showQuestion: function(){
           let newQuestion = this.questionsArray[this.currentQuestion];
-          // console.log(newQuestion, "check newquestion");
-          // newQuestion.hideFeedback();
           newQuestion.populateTheQuestion();
           newQuestion.displayQuestion();
         },
@@ -171,18 +169,20 @@ var MAINAPP = (function (nsp, $, domU, strU) {
 
       nextButton = Object.create(navigationProto);
       nextButton.goNext = function(e){
-        // console.log(this.currentQuestion, this.totalQuestions,"ho next");
         if(this.currentQuestion < this.totalQuestions - 1) {
           this.hideQuestion();
           this.currentQuestion = this.currentQuestion + 1;
-          // console.log(this.currentQuestion, "now current quest");
           this.showQuestion();
         }
       };
 
       prevButton = Object.create(navigationProto);
       prevButton.goPrev = function(){
-        console.log(this.currentQuestion, "check currentquestion");
+        if(this.currentQuestion > 0) {
+          this.hideQuestion();
+          this.currentQuestion = this.currentQuestion - 1;
+          this.showQuestion();
+        }
       };
       
       domU.assignEvent($('.btn-prev'),'click',function(e){

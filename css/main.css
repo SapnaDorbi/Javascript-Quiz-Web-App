@@ -8,6 +8,95 @@
     font-size: 30px;
   }
 
+  body .landing-page {
+    height: 30vh;
+    display: flex;
+    margin-left: 570px;
+    /* margin-right: 500px; */
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    font-family: sans-serif;
+  }
+
+.landing-page {
+    width: 20%;
+    position: relative;
+    height: 50px;
+    overflow: hidden;
+}
+
+.landing-page input {
+    width: 100%;
+    height: 100%;
+    font-weight: bold;
+    font-size: 3.5vh;
+    color: #444;
+    padding-top: 190px;
+    border: none;
+    outline: none;
+}
+
+.landing-page label {
+    position: absolute;
+    bottom: 0px;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    font-weight: bold;
+    font-size: 3.5vh;
+    border-bottom: 1px solid black;
+}
+
+.landing-page label::after {
+    content: "";
+    position: absolute;
+    left: 0px;
+    bottom: -1px;
+    height: 100%;
+    width: 100%;
+    /* font-size: 3.5vh; */
+    border-bottom: 3px solid #1abc9c;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.username {
+    position: absolute;
+    bottom: 5px;
+    left: 0px;
+    transition: all 0.3s ease;
+}
+
+.landing-page input:focus + .label-username .username,
+.landing-page input:valid + .label-username .username {
+    transform: translateY(-150%);
+    font-size: 22px;
+    color: #1abc9c; 
+}
+
+.landing-page input:focus + .label-username::after,
+.landing-page input:valid + .label-username::after {
+    transform: translateX(0%);
+}
+
+.singup {
+    margin-left: 570px;
+    margin-top: 10px;
+    width: 20%;
+    padding:10px;
+    border: 3px solid #333;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.singup:hover {
+    background-color: #1abc9c;
+    border: 3px solid #1abc9c;
+    color: white;
+  }
+
 #logo {
     text-align: center;
     padding-bottom: 1%;
@@ -20,7 +109,7 @@
 }
 
 .question {
-    margin: auto;
+    margin: auto;   
     width: 80%;
     padding-top: 7rem;
     position: relative;
@@ -226,7 +315,7 @@ input[type=radio] {
     box-sizing: border-box;
 }
 
-label{
+.content label{
     display: block;
     width: 100%;
     background: #F0F2F2;

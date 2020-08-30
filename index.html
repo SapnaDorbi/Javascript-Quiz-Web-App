@@ -12,53 +12,67 @@
     <script src="js/main.js"></script>
   </head>
   <body>
+    <!-- header -->
     <div class="header">
       <h1>JavaScript Quiz</h1>
       <p>Fun and learn together</p>
     </div>
-    <div class="question hidden-question" id="fill-in">
-      <div>
-        <h2 class="question-text"></h2>
-        <textarea class="fill-in" id="q01_ans"></textarea>
-        <button class="fill-in-submit btn-primary"></button>
+    <!-- landing page -->
+    <div class="landing-page-content">
+      <div class="landing-page">
+        <input type="text" name="username" autocomplete="off" required />
+        <label for="username" class="label-username">
+          <span class="username">Username</span>
+        </label>
       </div>
-      <div class="feedback no-answer">
-      </div>
-      <div class="feedback correct">
-      </div>
-      <div class="feedback incorrect">
-      </div>
+      <button class="singup">Get Started</button>
     </div>
-    <div class="question hidden-question" id="multi-choice">
-      <div>
-        <h2 class="question-text"></h2>
+    <!-- quiz -->
+    <div class="quiz-content" style="display:none;">
+      <div class="question hidden-question" id="fill-in">
         <div>
-          <!-- option 1 -->
-          <input type="radio" name="q4" id="q4_1" />
-          <label for="q4_1" id="q4_1_label"></label>
-          <!-- option 2 -->
-          <input type="radio" name="q4" id="q4_2" />
-          <label for="q4_2" id="q4_2_label"></label>
-          <!-- option 1 -->
-          <input type="radio" name="q4" id="q4_3" />
-          <label for="q4_3" id="q4_3_label"></label>
-          <!-- option 1 -->
-          <input type="radio" name="q4" id="q4_4" />
-          <label for="q4_4" id="q4_4_label"></label>
+          <h2 class="question-text"></h2>
+          <textarea class="fill-in" id="q01_ans"></textarea>
+          <button class="fill-in-submit btn-primary"></button>
         </div>
-        <button class="fill-in-submit btn-primary">Submit</button>
+        <div class="feedback no-answer">
+        </div>
+        <div class="feedback correct">
+        </div>
+        <div class="feedback incorrect">
+        </div>
       </div>
-      <div class="feedback no-answer">
+      <div class="question hidden-question" id="multi-choice">
+        <div>
+          <h2 class="question-text"></h2>
+          <div>
+            <!-- option 1 -->
+            <input type="radio" name="q4" id="q4_1" />
+            <label for="q4_1" id="q4_1_label"></label>
+            <!-- option 2 -->
+            <input type="radio" name="q4" id="q4_2" />
+            <label for="q4_2" id="q4_2_label"></label>
+            <!-- option 1 -->
+            <input type="radio" name="q4" id="q4_3" />
+            <label for="q4_3" id="q4_3_label"></label>
+            <!-- option 1 -->
+            <input type="radio" name="q4" id="q4_4" />
+            <label for="q4_4" id="q4_4_label"></label>
+          </div>
+          <button class="fill-in-submit btn-primary">Submit</button>
+        </div>
+        <div class="feedback no-answer">
+        </div>
+        <div class="feedback correct">
+        </div>
+        <div class="feedback incorrect">
+        </div>
       </div>
-      <div class="feedback correct">
-      </div>
-      <div class="feedback incorrect">
-      </div>
+      <div class="navigation btn-prev"><i class="fa fa-arrow-left" aria-hidden="true"></i></div>
+      <div class="navigation btn-next"><i class="fa fa-arrow-right" aria-hidden="true"></i></div>
     </div>
     <!-- <footer>
         <div id="logo"><img src="images/javascript_logo.png"></div>
     </footer> -->
-    <div class="navigation btn-prev"><i class="fa fa-arrow-left" aria-hidden="true"></i></div>
-    <div class="navigation btn-next"><i class="fa fa-arrow-right" aria-hidden="true"></i></div>
   </body>
 </html>

@@ -17,6 +17,7 @@ var UTIL = (function(u){
                     console.log(e);
                 }
             } else {
+                // console.log(domElement, "check dom ekleme");
                 if (domElement.indexOf('#') === 0) {
                     try {
                         // console.log((doc.getElementById(domElement.substring(1,domElement.length))), "heere dev");

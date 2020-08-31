@@ -6,9 +6,18 @@
     background: #1abc9c;
     color: white;
     font-size: 30px;
-  }
+}
 
-  body .landing-page {
+.invalid-feedback {
+    /* display: none; */
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+    margin-left: 570px;
+}
+
+body .landing-page {
     height: 30vh;
     display: flex;
     margin-left: 570px;
@@ -17,7 +26,7 @@
     align-items: center;
     flex-direction: column;
     font-family: sans-serif;
-  }
+}
 
 .landing-page {
     width: 20%;
@@ -95,7 +104,7 @@
     background-color: #1abc9c;
     border: 3px solid #1abc9c;
     color: white;
-  }
+}
 
 #logo {
     text-align: center;
@@ -185,10 +194,10 @@ button.fill-in-submit {
     -ms-user-select: none;
     user-select: none;
     -webkit-transition: opacity 1s ease-in-out;
-       -moz-transition: opacity 1s ease-in-out;
-        -ms-transition: opacity 1s ease-in-out;
-         -o-transition: opacity 1s ease-in-out;
-            transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -ms-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
 }
 
 .feedback {
@@ -201,10 +210,10 @@ button.fill-in-submit {
     font-size: 1.2em;
     font-family: 'Roboto';
     -webkit-transition: opacity 1s ease-in-out;
-       -moz-transition: opacity 1s ease-in-out;
-        -ms-transition: opacity 1s ease-in-out;
-         -o-transition: opacity 1s ease-in-out;
-            transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -ms-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
 }
 
 .feedback.no-answer {
@@ -277,10 +286,10 @@ input[type=radio] {
 
 [type="radio"]:not(:checked) + label,
 [type="radio"]:checked + label {
-  position: relative;
-  padding-left: 42px;
-  cursor: pointer;
-  box-sizing: border-box;
+    position: relative;
+    padding-left: 42px;
+    cursor: pointer;
+    box-sizing: border-box;
 }
 
 [type="radio"]:not(:checked) + label::before, 

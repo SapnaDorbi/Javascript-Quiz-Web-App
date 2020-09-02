@@ -8,7 +8,7 @@
     font-size: 30px;
 }
 
-.invalid-feedback {
+#invalid-username {
     /* display: none; */
     width: 100%;
     margin-top: .25rem;
@@ -324,7 +324,7 @@ input[type=radio] {
     box-sizing: border-box;
 }
 
-.content label{
+.quiz-content label{
     display: block;
     width: 100%;
     background: #F0F2F2;

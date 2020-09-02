@@ -187,25 +187,18 @@ var MAINAPP = (function (nsp, $, domU, strU) {
 
     const getStarted = function() {
       domU.assignEvent($('.singup'),'click',function(){
-        // console.log("dev dev");
         const username = $('#user-name').value;
-        console.log(username, "check username");
-        if(username) {
-          $('.landing-page-content').style.display = "none";
-          $('.quiz-content').style.display = "block";
+        if(username) {  
+          initiateQuiz();        
+          $('.landing-page-content')[0].style.display = "none";
+          $('.quiz-content')[0].style.display = "block";
         } else {
-          console.log($('#invalid-username'), "jsfkjdkyytyt");
-          alert("check dev");
           $('#invalid-username').innerHTML = "Enter your username";
-          alert("sdfdkl");
         }
       });
     }; 
 
-    // getStarted();
-    UTIL.domReady(initiateQuiz);
     UTIL.domReady(getStarted);
-    // UTIL.domReady(getStarted);
     
 })(MAINAPP || {}, UTIL.dom.$, UTIL.dom, UTIL.string);
 

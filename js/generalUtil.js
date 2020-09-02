@@ -1,10 +1,9 @@
 var UTIL = (function (gen) {
   const domReady = function (funct) {
     document.addEventListener("DOMContentLoaded", function () {
-        // console.log(typeof funct,"dev testing");
-      if (typeof funct === "function") {
-        funct();
-      }
+        if (typeof funct === "function") {
+          funct();
+        }
     },false);
   };
 

@@ -2,8 +2,6 @@ var UTIL = (function(u){
     //set up sub module
     var sub = u.dom = u.dom || {};
 
-    // console.log(u, "check u");
-
     //Dependencies
     const strU = u.string;
 
@@ -11,16 +9,13 @@ var UTIL = (function(u){
         $ = function(domElement) {
             if (!singleSelector(domElement)) {
                 try {
-                    // console.log("here vedvdev");
                     return doc.querySelectorAll(domElement);
                 } catch(e) {
                     console.log(e);
                 }
             } else {
-                // console.log(domElement, "check dom ekleme");
                 if (domElement.indexOf('#') === 0) {
                     try {
-                        // console.log((doc.getElementById(domElement.substring(1,domElement.length))), "heere dev");
                         return (doc.getElementById(domElement.substring(1,domElement.length)));
                     } catch(e) {
                         console.log(e);
@@ -42,10 +37,7 @@ var UTIL = (function(u){
         },
         singleSelector = function(str) {
             var arr;
-            
             arr = str.split(" ");
-            // console.log(arr.length, "check arr");
-
             if (arr.length === 1 && strU.numChar(str, "#") <= 1 && strU.numChar(str, ".") <= 1) {
                 return true;
             } else {   
@@ -74,10 +66,8 @@ var UTIL = (function(u){
         addClass = function(de, cls) {
             for (let i = 0; i < de.length; i++) {
                 if (de[i].classList) {
-                    // console.log(de[i].classList,"dev if");
                     de[i].classList.add(cls);
                 } else {
-                    // console.log("dev else");
                     de[i].className += ' ' + cls;
                 }
             }

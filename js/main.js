@@ -78,6 +78,9 @@ var MAINAPP = (function (nsp, $, domU, strU) {
                   distractors[i].innerHTML = this.distractorText[i];
                 }
               }
+              for(let i = 0; i < distractorsRadio.length; i++) {
+                distractorsRadio[i].checked = false;
+              }
             };
             this.checkTheAnswer = function() {
               for(let i = 0; i < distractors.length; i++) {
